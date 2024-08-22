@@ -1,27 +1,23 @@
 version: 2.1
-
 jobs:
   build:
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.10.1
     steps:
       - checkout
       - run:
-          name: Create virtual environment
-          command: python -m venv venv
-      - run:
-          name: Upgrade pip in virtual environment
-          command: venv/bin/pip install --upgrade pip
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
       - run:
           name: Install dependencies
-          command: venv/bin/pip install -r requirements.txt
+          command: pip install -r requirements.txt
       - run:
           name: Run tests
-          command: venv/bin/pytest
-
-workflows:
-  version: 2
-  build:
-    jobs:
-      - build
-
+          command: coverage run -m unittest && coverage xml && coverage report -m
+      - run:
+          name: Upload CodeClimate coverage report
+          command: |
+            ./cc-test-reporter after-build
