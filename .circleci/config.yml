@@ -3,22 +3,25 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:3.8  # Usa la imagen Docker de Python 3.8
+      - image: circleci/python:3.8
     steps:
-      - checkout  # Clona el repositorio en el entorno de CircleCI
+      - checkout
+      - run:
+          name: Create virtual environment
+          command: python -m venv venv
+      - run:
+          name: Upgrade pip in virtual environment
+          command: venv/bin/pip install --upgrade pip
       - run:
           name: Install dependencies
-          command: |
-            pip install --upgrade pip  # Asegúrate de usar la última versión de pip
-            pip install -r requirements.txt  # Instala las dependencias desde requirements.txt
+          command: venv/bin/pip install -r requirements.txt
       - run:
           name: Run tests
-          command: |
-            pytest  # Ejecuta las pruebas con pytest
+          command: venv/bin/pytest
 
 workflows:
   version: 2
   build:
     jobs:
-      - build  # Ejecuta el job 'build'
+      - build
 
