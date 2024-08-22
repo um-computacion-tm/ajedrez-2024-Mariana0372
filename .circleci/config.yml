@@ -3,20 +3,22 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:3.8
+      - image: circleci/python:3.8  # Usa la imagen Docker de Python 3.8
     steps:
-      - checkout
+      - checkout  # Clona el repositorio en el entorno de CircleCI
       - run:
           name: Install dependencies
           command: |
-            pip install -r requirements.txt
+            pip install --upgrade pip  # Asegúrate de usar la última versión de pip
+            pip install -r requirements.txt  # Instala las dependencias desde requirements.txt
       - run:
           name: Run tests
           command: |
-            pytest
+            pytest  # Ejecuta las pruebas con pytest
 
 workflows:
   version: 2
   build:
     jobs:
-      - build
+      - build  # Ejecuta el job 'build'
+
