@@ -1,6 +1,5 @@
-#config
 version: 2.1
-joba:
+jobs:
   build:
     docker:
       - image: cimg/python:3.10.1
@@ -8,8 +7,6 @@ joba:
       - checkout
 
       - run:
-config2
-
           name: Setup Code Climate test-reporter
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -17,7 +14,6 @@ config2
             ./cc-test-reporter before-build
 
       - run:
-main
           name: Install dependencies
           command: |
             python -m pip install --upgrade pip
