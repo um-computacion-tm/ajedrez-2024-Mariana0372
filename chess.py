@@ -1,38 +1,51 @@
 # chess.py
 
 from board import Board
+from movimientos import es_movimiento_valido
 
 class Chess:
     def __init__(self):
-        self.__board__ = Board()
-        self.__turn__ = "WHITE"
+        self.board = Board()
+        self.turn = "WHITE"
 
     def move(self, from_row, from_col, to_row, to_col):
-        # Validar coordenadas
-        piece = self.__board__.get_piece(from_row, from_col)
-        
-        # Verificar si hay una pieza en la posición de origen
+        piece = self.board.get_piece(from_row, from_col)
         if piece == '.':
             print("No hay ninguna pieza en la posición de origen.")
             return
+
+        if not es_movimiento_valido(from_row, from_col, to_row, to_col, self.board):
+            print("Movimiento no válido.")
+            return
         
-        # Mover la pieza
-        self.__board__.set_piece(to_row, to_col, piece)
-        self.__board__.set_piece(from_row, from_col, '.')
+        piece_obj = self.convert_symbol_to_piece(piece)
+        if piece_obj is None:
+            print("Error al convertir la pieza.")
+            return
         
-        # Cambiar turno
+        self.board.set_piece(to_row, to_col, piece_obj)
+        self.board.set_piece(from_row, from_col, None)
+        
         self.change_turn()
 
-    @property
-
-    def turn(self):
-        return self.__turn__
+    def convert_symbol_to_piece(self, symbol):
+        color = 'WHITE' if symbol.isupper() else 'BLACK'
+        if symbol.lower() == 'p':
+            return Peon(color)
+        elif symbol.lower() == 'r':
+            return Torre(color)
+        elif symbol.lower() == 'n':
+            return Caballo(color)
+        elif symbol.lower() == 'b':
+            return Alfil(color)
+        elif symbol.lower() == 'q':
+            return Reina(color)
+        elif symbol.lower() == 'k':
+            return Rey(color)
+        return None
 
     def change_turn(self):
-        if self.__turn__ == "WHITE":
-            self.__turn__ = "BLACK"
-        else:
-            self.__turn__ = "WHITE"
+        self.turn = "BLACK" if self.turn == "WHITE" else "WHITE"
 
     def print_board(self):
-        self.__board__.imprimir_tablero()
+        self.board.imprimir_tablero()
