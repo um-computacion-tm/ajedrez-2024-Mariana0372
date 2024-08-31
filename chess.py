@@ -2,6 +2,7 @@ from board import Board
 from piezas import Peon, Torre, Caballo, Alfil, Reina, Rey
 from movimientos import es_movimiento_valido
 from undo_redo import UndoRedoManager
+from redis_storage import guardar_partida, cargar_partida
 
 class Chess:
     def __init__(self):
@@ -28,6 +29,16 @@ class Chess:
         self.__board.set_piece(to_row, to_col, piece_obj)
         self.__board.set_piece(from_row, from_col, None)
         self.__change_turn()
+
+    def guardar_partida(self, id_partida):
+        estado_tablero = self.__board.obtener_estado_tablero() 
+        guardar_partida(id_partida, estado_tablero)
+
+    def cargar_partida(self, id_partida):
+        estado_tablero = cargar_partida(id_partida)
+        if estado_tablero:
+            self.__board.establecer_estado_tablero(estado_tablero)  
+            self.__turn = "WHITE" if estado_tablero.get('turn') == 'WHITE' else "BLACK"
 
     def undo(self):
         previous_board = self.__undo_redo_manager.undo()

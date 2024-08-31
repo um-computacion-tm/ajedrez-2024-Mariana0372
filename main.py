@@ -1,12 +1,15 @@
 from chess import Chess
+from redis_storage import guardar_partida, cargar_partida
 
 def mostrar_menu():
     print("\nOpciones:")
     print("1. Hacer movimiento")
     print("2. Deshacer movimiento")
     print("3. Rehacer movimiento")
-    print("4. Salir")
-    print("Ingrese su opción (1-4): ")
+    print("4. Guardar partida")
+    print("5. Cargar partida")
+    print("6. Salir")
+    print("Ingrese su opción (1-6): ")
 
 def main():
     # Crear una instancia del juego
@@ -42,12 +45,28 @@ def main():
             juego.redo()
         
         elif opcion == '4':
+            # Guardar partida en Redis
+            id_partida = input("Ingresa un ID para guardar la partida: ").strip()
+            juego.guardar_partida(id_partida)
+            print(f"Partida guardada con ID '{id_partida}' en Redis.")
+        
+        elif opcion == '5':
+            # Cargar partida desde Redis
+            id_partida = input("Ingresa el ID de la partida para cargar: ").strip()
+            estado_tablero = cargar_partida(id_partida)
+            if estado_tablero:
+                juego.__board.establecer_estado_tablero(estado_tablero)  # Método para actualizar el tablero con el estado cargado
+                print(f"Partida con ID '{id_partida}' cargada.")
+            else:
+                print(f"No se encontró ninguna partida con el ID '{id_partida}'.")
+        
+        elif opcion == '6':
             # Salir del juego
             print("Gracias por jugar. ¡Hasta la próxima!")
             break
         
         else:
-            print("Opción no válida. Por favor, elija una opción entre 1 y 4.")
+            print("Opción no válida. Por favor, elija una opción entre 1 y 6.")
 
 if __name__ == "__main__":
     main()

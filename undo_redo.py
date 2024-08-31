@@ -33,3 +33,4 @@ class UndoRedoManager:
         
         # Recuperar el último estado de la pila de rehacer
         return self.__redo_stack.pop()
+
