@@ -78,6 +78,23 @@
   - Se añadió un menú interactivo para elegir entre realizar un movimiento, deshacer un movimiento, rehacer un movimiento o salir del juego.
   - Manejo de errores mejorado para entradas inválidas, incluyendo manejo de excepciones para posiciones inválidas
 
+#### **Versión 1.3 - 30/08/2024**
 
+#### `chess.py`
+- **Arreglos en `move`**: Corrección en la conversión de símbolos a piezas y en la lógica de actualización del tablero.
+- **Simplificación de `print_board`**: Se eliminó la modificación del turno dentro del método de impresión.
+- **Corrección en `__convert_symbol_to_piece`**: Ajuste para convertir correctamente los símbolos a objetos de pieza.
 
+#### `movimientos.py`
+- **`es_movimiento_valido`**: Se simplificó la validación de movimientos, eliminando parámetros innecesarios.
+- **`convert_symbol_to_piece`**: Ajuste para la conversión de símbolos a piezas sin parámetros adicionales.
+
+#### `undo_redo.py`
+- **Correcciones en deshacer/rehacer**: Ajustes en el manejo de las pilas de deshacer y rehacer para una funcionalidad correcta.
+
+#### `piezas.py`
+- **Corrección en los métodos `mover`**: Ajustes en la lógica de movimiento para `Peon`, `Torre`, `Alfil`, `Reina`, y `Rey`.
+
+#### `board.py`
+- **Nuevo archivo**: Implementación del tablero y manejo inicial de piezas.
 
