@@ -98,3 +98,31 @@
 #### `board.py`
 - **Nuevo archivo**: Implementación del tablero y manejo inicial de piezas.
 
+#### **Versión 1.4 - 31/08/2024**
+
+
+### **Añadido**
+- **Nuevo módulo para Redis**:
+  - Se añadió `redis_storage.py` para gestionar el almacenamiento y recuperación del estado del juego usando Redis.
+    - Funciones agregadas:
+      - `guardar_partida(id_partida, estado_tablero)`: Guarda el estado del tablero en Redis.
+      - `cargar_partida(id_partida)`: Carga el estado del tablero desde Redis.
+
+### **Modificado**
+- **Clase `Chess`**:
+  - Se añadieron métodos para guardar y cargar partidas usando Redis:
+    - `guardar_partida(id_partida)`: Guarda el estado del tablero en Redis.
+    - `cargar_partida(id_partida)`: Carga el estado del tablero desde Redis y restaura el turno.
+  - Integración con `redis_storage` para manejar el almacenamiento persistente del estado del juego.
+
+- **Clase `Board`**:
+  - Se añadieron métodos para serializar y deserializar el estado del tablero:
+    - `obtener_estado_tablero()`: Devuelve el estado del tablero en formato dictado por el formato de serialización.
+    - `establecer_estado_tablero(estado)`: Configura el tablero con el estado proporcionado.
+
+- **Menú en `main.py`**:
+  - Se añadieron opciones para guardar y cargar partidas:
+    - Opción 4: Guardar partida en Redis.
+    - Opción 5: Cargar partida desde Redis.
+  - Se actualizaron las interacciones del menú para manejar el almacenamiento persistente del juego.
+
