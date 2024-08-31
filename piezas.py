@@ -1,4 +1,3 @@
-
 class Pieza:
     def __init__(self, color):
         self.color = color
@@ -8,13 +7,11 @@ class Pieza:
         raise NotImplementedError("Este método debe ser implementado en una subclase.")
 
 class Peon(Pieza):
-    #Inicializa un peón con el color dado y establece su símbolo
     def __init__(self, color):
         super().__init__(color)
         self.symbol = 'P' if color == 'WHITE' else 'p'
-    #verifica si el movimiento del peon es valido
+
     def mover(self, from_row, from_col, to_row, to_col, board):
-        #True si el movimiento es válido para el peón, False en caso contrario
         direction = 1 if self.color == 'WHITE' else -1
         start_row = 1 if self.color == 'WHITE' else 6
         if from_col == to_col:
@@ -34,7 +31,7 @@ class Torre(Pieza):
         if from_row == to_row or from_col == to_col:
             return self.liberar_camino(from_row, from_col, to_row, to_col, board)
         return False
-    #Verifica si el camino entre la posición de origen y la de destino está libre
+
     def liberar_camino(self, from_row, from_col, to_row, to_col, board):
         row_step = (to_row - from_row) // max(1, abs(to_row - from_row))
         col_step = (to_col - from_col) // max(1, abs(to_col - from_col))
@@ -90,3 +87,4 @@ class Rey(Pieza):
 
     def mover(self, from_row, from_col, to_row, to_col, board):
         return max(abs(from_row - to_row), abs(from_col - to_col)) == 1
+
