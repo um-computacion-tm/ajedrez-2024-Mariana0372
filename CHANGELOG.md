@@ -126,3 +126,22 @@
     - Opción 5: Cargar partida desde Redis.
   - Se actualizaron las interacciones del menú para manejar el almacenamiento persistente del juego.
 
+##### **Versión 1.4 - 03/09/2024**
+
+#### Cambios en los Tests
+
+- **Actualización**: Los tests ahora usan el objeto `Board` directamente en lugar de pasar el símbolo de la pieza a la función `es_movimiento_valido`.
+- **Pruebas de Peón**:
+  - Confirmado que el peón puede avanzar dos pasos y un paso. Se ajustó la prueba de captura para verificar que se pueda capturar una pieza negra.
+- **Pruebas de Torre**:
+  - Validado movimiento horizontal y vertical. Se incluyó una prueba para verificar que la torre no puede moverse a través de piezas bloqueadoras.
+- **Pruebas de Caballo**:
+  - Confirmado movimientos válidos en forma de L y rechazado movimientos inválidos.
+- **Pruebas de Alfil**:
+  - Validado movimientos diagonales en ambas direcciones.
+- **Pruebas de Reina**:
+  - Confirmado movimientos verticales, horizontales y diagonales.
+- **Pruebas de Rey**:
+  - Validado movimientos de un paso en cualquier dirección y rechazado movimientos mayores a un paso.
+
+
