@@ -145,3 +145,13 @@
   - Validado movimientos de un paso en cualquier dirección y rechazado movimientos mayores a un paso.
 
 
+#### **Versión 1.5 - 04/09/2024**
+
+##### Añadido
+- **Archivo de prueba `test_undo_redo_manager.py`:**
+  - **`test_push_and_undo`**: Verifica que los movimientos se deshacen en el orden correcto y que no quedan movimientos adicionales después de deshacer todo.
+  - **`test_redo`**: Verifica que los movimientos se rehacen en el orden correcto después de ser deshechos.
+  - **`test_clear_redo_stack_on_new_push`**: Comprueba que la pila de rehacer se borra al realizar un nuevo `push` después de deshacer y rehacer.
+  - **`test_no_redo_when_empty`**: Verifica que no se pueda rehacer si la pila de rehacer está vacía.
+  - **`test_no_undo_when_empty`**: Verifica que no se pueda deshacer si la pila de deshacer está vacía.
+
