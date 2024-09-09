@@ -155,3 +155,18 @@
   - **`test_no_redo_when_empty`**: Verifica que no se pueda rehacer si la pila de rehacer está vacía.
   - **`test_no_undo_when_empty`**: Verifica que no se pueda deshacer si la pila de deshacer está vacía.
 
+#### **Version 1.6 - 08/09/2024**
+
+
+1. **Modularización:**
+   - Separación de funcionalidades en funciones específicas para mejorar la legibilidad y mantenimiento.
+
+2. **Validaciones Mejoradas:**
+   - Añadida validación de posiciones y conversión a índices.
+
+3. **Manejo de Errores:**
+   - Mejor manejo de excepciones al realizar movimientos.
+
+4. **Refactorización de Guardado y Carga:**
+   - Funcionalidades de guardar y cargar partidas movidas a funciones dedicadas.
+
