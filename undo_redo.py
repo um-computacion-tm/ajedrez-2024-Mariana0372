@@ -1,3 +1,4 @@
+from typing import Optional, List
 class UndoRedoManager:
     def __init__(self):
         self.__history = []  # Pila para deshacer
@@ -13,6 +14,7 @@ class UndoRedoManager:
         if not self.__history:
             print("No hay movimientos para deshacer.")
             return None
+
         
         # Guardar el estado actual del tablero en la pila de rehacer
         current_board = self.__history[-1]
@@ -34,3 +36,15 @@ class UndoRedoManager:
         # Recuperar el último estado de la pila de rehacer
         return self.__redo_stack.pop()
 
+    def get_history(self) -> List[object]:
+        """Obtener la pila de deshacer"""
+        return self.__history.copy()
+
+    def get_redo_stack(self) -> List[object]:
+        """Obtener la pila de rehacer"""
+        return self.__redo_stack.copy()
+
+    def clear(self) -> None:
+        """Limpiar el historial y la pila de rehacer"""
+        self.__history.clear()
+        self.__redo_stack.clear()

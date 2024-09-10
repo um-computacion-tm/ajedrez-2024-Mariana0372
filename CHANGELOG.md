@@ -170,3 +170,10 @@
 4. **Refactorización de Guardado y Carga:**
    - Funcionalidades de guardar y cargar partidas movidas a funciones dedicadas.
 
+
+#### **Version 1.7 - 09/09/2024**
+
+- **Métodos Nuevos**:
+  - **`get_history`**: Devuelve una copia de la pila de deshacer.
+  - **`get_redo_stack`**: Devuelve una copia de la pila de rehacer.
+  - **`clear`**: Limpia las pilas de deshacer y rehacer
