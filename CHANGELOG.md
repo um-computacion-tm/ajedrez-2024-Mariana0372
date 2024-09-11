@@ -177,3 +177,11 @@
   - **`get_history`**: Devuelve una copia de la pila de deshacer.
   - **`get_redo_stack`**: Devuelve una copia de la pila de rehacer.
   - **`clear`**: Limpia las pilas de deshacer y rehacer
+
+
+#### **Version 1.8 - 10/09/2024**
+
+
+##### Añadido
+- **Pruebas Unitarias**: Implementadas pruebas con `unittest` para verificar la funcionalidad de `UndoRedoManager`.
+
